@@ -10,9 +10,9 @@
 
             <h3><?php echo $data['title']; ?></h3>
 
-            <a href="<?= URLROOT; ?>/smartphones/index">Overzicht smartphones</a> |
+            <a href="<?= URLROOT; ?>/SmartphoneController/index">Overzicht smartphones</a> |
 
-            <a href="<?= URLROOT; ?>/sneakers/index">Mooiste Sneakers</a> |
+            <a href="<?= URLROOT; ?>/SneakerController/index">Mooiste Sneakers</a> |
             
             <a href="<?= URLROOT; ?>/horloges/index">Duurste Horloges</a> |
             <a href="<?= URLROOT; ?>/zangeressen/index">Rijkste zangeressen</a>
