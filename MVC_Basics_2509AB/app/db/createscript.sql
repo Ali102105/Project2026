@@ -58,7 +58,7 @@ CREATE TABLE Sneakers
     ,Opmerking          VARCHAR(255)                        NULL        DEFAULT NULL
     ,DatumAangemaakt    DATETIME(6)                     NOT NULL        DEFAULT NOW(6)
     ,DatumGewijzigd     DATETIME(6)                     NOT NULL        DEFAULT NOW(6)
-    ,CONSTRAINT         PK_Smartphones_Id    PRIMARY KEY                 (Id)
+    ,CONSTRAINT         PK_Sneakers_Id    PRIMARY KEY                 (Id)
 ) ENGINE=InnoDB;
 
 INSERT INTO Sneakers
@@ -80,3 +80,30 @@ VALUES
 ,('Nike', 'Air Force 1', 'Casual', 120, 'Leer', 420, '2024-03-15')
 ,('Nike', 'Air Jordan 4', 'Basketbal', 210, 'Leer', 460, '2025-02-10')
 ,('Adidas', 'Superstar', 'Casual', 95, 'Leer', 410, '2023-09-01');
+
+CREATE TABLE Horloges
+(
+     Id                 SMALLINT        UNSIGNED        NOT NULL        AUTO_INCREMENT
+    ,Merk               VARCHAR(50)                     NOT NULL
+    ,Model              VARCHAR(50)                     NOT NULL
+    ,Prijs              DECIMAL(6,0)                    NOT NULL
+    ,IsActief           BIT                             NOT NULL        DEFAULT 1
+    ,Opmerking          VARCHAR(255)                        NULL        DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6)                     NOT NULL        DEFAULT NOW(6)
+    ,DatumGewijzigd     DATETIME(6)                     NOT NULL        DEFAULT NOW(6)
+    ,CONSTRAINT         PK_Horloges_Id    PRIMARY KEY                 (Id)
+) ENGINE=InnoDB;
+
+INSERT INTO Horloges
+(
+     Merk
+    ,Model
+    ,Prijs
+)
+
+VALUES
+('Rolex', 'Daytona 126500LN', 19800),
+('Omega', 'Speedmaster Moonwatch Professional', 8500),
+('Vacheron Constantin', 'Overseas Perpetual Calender Ultra-thin', 98000),
+('Jeager-LeCoultre', 'Reverso Tribute Duoface', 17000);
+('Test','Test', 1000);
