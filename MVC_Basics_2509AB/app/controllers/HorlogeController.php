@@ -31,7 +31,34 @@ class HorlogeController extends BaseController
 
         $this->index('flex',  'Record is verwijderd');
     }
+
+            public function create()
+    {
+        $data = [
+            'title'    => 'Nieuwe sneaker toevoegen',
+            'display'  => 'none',
+            'message'  => ''
+        ];
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST['merk']) ||
+               empty($_POST['model'])||
+               empty($_POST['prijs'])) {
+
+               $data['display'] = 'flex';
+               $data['message'] = 'De gegevens zijn opgeslagen';
+               }
+            else {
+               $data['display'] = 'flex';
+               $data['message'] = 'De gegevens zijn opgeslagen';
+
+               $this->horlogeModel->create($_POST);
+
+    header('Refresh: 3; URL=' . URLROOT . '/HorlogeController/index');
 }
+        }
+        $this->view('Horloge/create', $data);
+    }
 
-
+}
 ?>

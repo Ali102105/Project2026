@@ -37,4 +37,22 @@ class Horloge
 
                 return $this->db->execute();
 }
+
+            public function create($data)
+    {
+        $sql = "INSERT INTO Horloges     ( Merk
+                                          ,Model
+                                          ,Prijs
+                                        )
+                VALUES (:merk,
+                        :model,
+                        :prijs)";
+                        
+        $this->db->query($sql);
+        $this->db->bind(':merk', $data['merk'], PDO::PARAM_STR);
+        $this->db->bind(':model', $data['model'], PDO::PARAM_STR);
+        $this->db->bind(':prijs', $data['prijs'], PDO::PARAM_INT);
+
+        return $this->db->execute();
+    }
 }
