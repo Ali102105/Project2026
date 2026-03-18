@@ -26,19 +26,19 @@ class Horloge
     }
 
     public function delete($Id)
-{
-            $sql = "DELETE
+    {
+        $sql = "DELETE
                 FROM Horloges
                 WHERE Id = :Id";
 
-                $this->db->query($sql);
+        $this->db->query($sql);
 
-                $this->db->bind(':Id', $Id, PDO::PARAM_INT);
+        $this->db->bind(':Id', $Id, PDO::PARAM_INT);
 
-                return $this->db->execute();
-}
+        return $this->db->execute();
+    }
 
-            public function create($data)
+    public function create($data)
     {
         $sql = "INSERT INTO Horloges     ( Merk
                                           ,Model
@@ -47,7 +47,7 @@ class Horloge
                 VALUES (:merk,
                         :model,
                         :prijs)";
-                        
+
         $this->db->query($sql);
         $this->db->bind(':merk', $data['merk'], PDO::PARAM_STR);
         $this->db->bind(':model', $data['model'], PDO::PARAM_STR);
@@ -55,4 +55,36 @@ class Horloge
 
         return $this->db->execute();
     }
+
+    public function getHorlogeById($id)
+    {
+        $sql = "SELECT HRL.Id
+                  ,HRL.Merk
+                  ,HRL.Model
+                  ,HRL.Prijs
+            FROM Horloges as HRL
+            WHERE HRL.Id = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id, PDO::PARAM_INT);
+
+        return $this->db->single();
+    }
+
+public function updateHorloge($request)
+{
+    $sql = "UPDATE Horloges
+            SET Merk = :merk,
+                Model = :model,
+                Prijs = :prijs
+            WHERE Id = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $request['id'], PDO::PARAM_INT);
+    $this->db->bind(':merk', $request['merk'], PDO::PARAM_STR);
+    $this->db->bind(':model', $request['model'], PDO::PARAM_STR);
+    $this->db->bind(':prijs', $request['prijs'], PDO::PARAM_STR);
+
+    return $this->db->execute();
+}
 }

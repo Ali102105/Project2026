@@ -37,12 +37,12 @@ class Smartphone
                 FROM Smartphones
                 WHERE Id = :Id";
 
-                $this->db->query($sql);
+        $this->db->query($sql);
 
-                $this->db->bind(':Id', $Id, PDO::PARAM_INT);
+        $this->db->bind(':Id', $Id, PDO::PARAM_INT);
 
-                return $this->db->execute();
-                }
+        return $this->db->execute();
+    }
 
     public function create($data)
     {
@@ -63,7 +63,7 @@ class Smartphone
                         :schermgrootte,
                         :releasedatum,
                         :megapixels)";
-                        
+
         $this->db->query($sql);
         $this->db->bind(':merk', $data['merk'], PDO::PARAM_STR);
         $this->db->bind(':model', $data['model'], PDO::PARAM_STR);
@@ -76,5 +76,52 @@ class Smartphone
 
         return $this->db->execute();
     }
-                
+
+    public function getSmartphoneById($id)
+    {
+        $sql = "SELECT SMPS.Id
+                  ,SMPS.Merk
+                  ,SMPS.Model
+                  ,SMPS.Prijs
+                  ,SMPS.Geheugen
+                  ,SMPS.Besturingssysteem
+                  ,SMPS.Schermgrootte
+                  ,SMPS.Releasedatum
+                  ,SMPS.MegaPixels
+            FROM Smartphones as SMPS
+            WHERE SMPS.Id = :id";
+
+        $this->db->query($sql);
+        $this->db->bind(':id', $id, PDO::PARAM_INT);
+
+        return $this->db->single();
+    }
+
+    public function updateSmartphone($request)
+{
+    //var_dump($_REQUEST);
+    $sql = "UPDATE Smartphones as SMPS
+            SET     SMPS.Merk = :merk
+                   ,SMPS.Model = :model
+                   ,SMPS.Prijs = :prijs
+                   ,SMPS.Geheugen = :geheugen
+                   ,SMPS.Besturingssysteem = :besturingssysteem
+                   ,SMPS.Schermgrootte = :schermgrootte
+                   ,SMPS.Releasedatum = :releasedatum
+                   ,SMPS.MegaPixels = :megapixels
+            WHERE   SMPS.Id = :id";
+
+    $this->db->query($sql);
+    $this->db->bind(':id', $request['id'], PDO::PARAM_STR);
+    $this->db->bind(':merk', $request['merk'], PDO::PARAM_STR);
+    $this->db->bind(':model', $request['model'], PDO::PARAM_STR);
+    $this->db->bind(':prijs', $request['prijs'], PDO::PARAM_INT);
+    $this->db->bind(':geheugen', $request['geheugen'], PDO::PARAM_INT);
+    $this->db->bind(':besturingssysteem', $request['besturingssysteem'], PDO::PARAM_STR);
+    $this->db->bind(':schermgrootte', $request['schermgrootte'], PDO::PARAM_INT);
+    $this->db->bind(':releasedatum', $request['releasedatum'], PDO::PARAM_STR);
+    $this->db->bind(':megapixels', $request['megapixels'], PDO::PARAM_INT);
+
+    return $this->db->execute();
+}
 }
