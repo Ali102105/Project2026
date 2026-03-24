@@ -107,3 +107,41 @@ VALUES
 ('Vacheron Constantin', 'Overseas Perpetual Calender Ultra-thin', 98000),
 ('Jeager-LeCoultre', 'Reverso Tribute Duoface', 17000);
 ('Test','Test', 1000);
+
+CREATE TABLE Zangeres
+(
+     Id                 SMALLINT        UNSIGNED        NOT NULL        AUTO_INCREMENT
+    ,Stagenaam          VARCHAR(50)                     NOT NULL        UNIQUE
+    ,Naam               VARCHAR(50)                     NOT NULL
+    ,Tussenvoegsel      VARCHAR(10)                     NULL
+    ,Achternaam         VARCHAR(50)                     NOT NULL
+    ,Land               VARCHAR(30)                     NOT NULL
+    ,Networth           DECIMAL(12,0)                   NOT NULL
+    ,IsActief           BIT                             NOT NULL        DEFAULT 1
+    ,Opmerking          VARCHAR(255)                        NULL        DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6)                     NOT NULL        DEFAULT NOW(6)
+    ,DatumGewijzigd     DATETIME(6)                     NOT NULL        DEFAULT NOW(6)
+    ,CONSTRAINT         PK_Zangeres_Id    PRIMARY KEY                 (Id)
+) ENGINE=InnoDB;
+
+INSERT INTO Zangeres
+(
+     Stagenaam
+    ,Naam
+    ,Tussenvoegsel
+    ,Achternaam
+    ,Land
+    ,Networth
+)
+
+VALUES
+('Rihanna', 'Robyn', NULL, 'Fenty', 'Barbados', 1400000000),
+('Taylor Swift', 'Taylor', NULL, 'Swift', 'USA', 1100000000),
+('Madonna', 'Madonna', NULL, '', 'USA', 850000000),
+('Beyonce', 'Beyonce', NULL, 'Knowles', 'USA', 800000000),
+('Celine Dion', 'Celine', NULL, 'Dion', 'Canada', 800000000),
+('Dolly Parton', 'Dolly', NULL, 'Parton', 'USA', 650000000),
+('Gloria Estefan', 'Gloria', NULL, 'Estefan', 'Cuba/USA', 500000000),
+('Barbra Streisand', 'Barbra', NULL, 'Streisand', 'USA', 450000000),
+('Jennifer Lopez', 'Jennifer', NULL, 'Lopez', 'USA', 400000000),
+('Shakira', 'Shakira', NULL, '', 'Colombia', 300000000);

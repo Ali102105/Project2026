@@ -37,18 +37,34 @@ class HorlogeController extends BaseController
         $data = [
             'title'    => 'Nieuwe sneaker toevoegen',
             'display'  => 'none',
-            'message'  => ''
+            'message'  => '',
+            'errors'   => []
         ];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['merk']) ||
-               empty($_POST['model'])||
-               empty($_POST['prijs'])) {
+            $errors = [];
 
-               $data['display'] = 'flex';
-               $data['message'] = 'De gegevens zijn opgeslagen';
-               }
-            else {
+            if (empty(trim($_POST['merk']))) {
+                $errors['merk'] = 'Voer een merk in';
+            } elseif (strlen($_POST['merk']) > 20) {
+                $errors['merk'] = 'Merk mag maximaal 20 tekens bevatten';
+            }
+
+            if (empty(trim($_POST['model']))) {
+                $errors['model'] = 'Voer een model in';
+            } elseif (strlen($_POST['model']) > 20) {
+                $errors['model'] = 'Model mag maximaal 20 tekens bevatten';
+            }
+
+            if (empty($_POST['prijs'])) {
+                $errors['prijs'] = 'Voer een prijs in';
+            } elseif (!is_numeric($_POST['prijs']) || $_POST['prijs'] < 0 || $_POST['prijs'] > 9999.99) {
+                $errors['prijs'] = 'Voer een geldige prijs in (0 - 9999,99)';
+            }
+
+            if (!empty($errors)) {
+                $data['errors'] = $errors;
+            } else {
                $data['display'] = 'flex';
                $data['message'] = 'De gegevens zijn opgeslagen';
 
@@ -69,16 +85,29 @@ class HorlogeController extends BaseController
         ];
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST['merk']) ||
-                empty($_POST['model']) ||
-                empty($_POST['prijs'])) {
+            $errors = [];
 
-                // Laat de <div>-tag met terugkoppeling naar de gebruiker zien
-                $data['display'] = 'flex';
-                $data['message'] = 'Vul alle velden in';
-                $data['color']   = 'danger';
+            if (empty(trim($_POST['merk']))) {
+                $errors['merk'] = 'Voer een merk in';
+            } elseif (strlen($_POST['merk']) > 20) {
+                $errors['merk'] = 'Merk mag maximaal 20 tekens bevatten';
             }
-            else {
+
+            if (empty(trim($_POST['model']))) {
+                $errors['model'] = 'Voer een model in';
+            } elseif (strlen($_POST['model']) > 20) {
+                $errors['model'] = 'Model mag maximaal 20 tekens bevatten';
+            }
+
+            if (empty($_POST['prijs'])) {
+                $errors['prijs'] = 'Voer een prijs in';
+            } elseif (!is_numeric($_POST['prijs']) || $_POST['prijs'] < 0 || $_POST['prijs'] > 9999.99) {
+                $errors['prijs'] = 'Voer een geldige prijs in (0 - 9999,99)';
+            }
+
+            if (!empty($errors)) {
+                $data['errors'] = $errors;
+          }  else {
 
 
                 $result = $this->horlogeModel->updateHorloge($_POST);
