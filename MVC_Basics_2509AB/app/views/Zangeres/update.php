@@ -42,12 +42,12 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="Achternaam" class="form-label">Achternaam</label>
-                    <input name="Achternaam" type="text"
-                        class="form-control <?= isset($data['errors']['Achternaam']) ? 'is-invalid' : ''; ?>"
-                        id="Achternaam" value="<?= $_POST['Achternaam'] ?? $data['zangeres']->Achternaam ?>">
-                    <?php if (isset($data['errors']['Achternaam'])): ?>
-                        <div class="invalid-feedback"><?= $data['errors']['Achternaam']; ?></div>
+                    <label for="achternaam" class="form-label">Achternaam</label>
+                    <input name="achternaam" type="text"
+                        class="form-control <?= isset($data['errors']['achternaam']) ? 'is-invalid' : ''; ?>"
+                        id="achternaam" value="<?= $_POST['achternaam'] ?? $data['zangeres']->Achternaam ?>">
+                    <?php if (isset($data['errors']['achternaam'])): ?>
+                        <div class="invalid-feedback"><?= $data['errors']['achternaam']; ?></div>
                     <?php endif; ?>
                 </div>
 
@@ -64,8 +64,8 @@
                 <div class="mb-3">
                     <label for="networth" class="form-label">Networth</label>
                     <input name="networth" type="number" min="-999999999999" max="999999999999" step="0.01"
-                        class="form-control <?= isset($data['errors']['networth']) ? 'is-invalid' : ''; ?>" id="networth"
-                        value="<?= $_POST['networth'] ?? $data['zangeres']->Networth ?>">
+                        class="form-control <?= isset($data['errors']['networth']) ? 'is-invalid' : ''; ?>"
+                        id="networth" value="<?= $_POST['networth'] ?? $data['zangeres']->Networth ?>">
                     <?php if (isset($data['errors']['networth'])): ?>
                         <div class="invalid-feedback"><?= $data['errors']['networth']; ?></div>
                     <?php endif; ?>

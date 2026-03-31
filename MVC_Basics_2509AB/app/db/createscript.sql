@@ -106,7 +106,6 @@ VALUES
 ('Omega', 'Speedmaster Moonwatch Professional', 8500),
 ('Vacheron Constantin', 'Overseas Perpetual Calender Ultra-thin', 98000),
 ('Jeager-LeCoultre', 'Reverso Tribute Duoface', 17000);
-('Test','Test', 1000);
 
 CREATE TABLE Zangeres
 (

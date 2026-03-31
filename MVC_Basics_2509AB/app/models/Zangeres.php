@@ -92,26 +92,24 @@ class Zangeres
         return $this->db->single();
     }
 
-public function updateZangeres($request)
-{
-    $sql = "UPDATE Zangeres
+    public function updateZangeres($request)
+    {
+        $sql = "UPDATE Zangeres
             SET Stagenaam = :stagenaam,
                 Naam = :naam,
-                Tussenvoegsel = :tussenvoegsel,
                 Achternaam = :achternaam,
                 Land = :land,
-                Networth = :networth,
+                Networth = :networth
             WHERE Id = :id";
 
-    $this->db->query($sql);
-    $this->db->bind(':id', $request['id'], PDO::PARAM_INT);
-    $this->db->bind(':stagenaam', $request['stagenaam'], PDO::PARAM_STR);
-    $this->db->bind(':naam', $request['naam'], PDO::PARAM_STR);
-    $this->db->bind(':tussenvoegsel', $request['tussenvoegsel'], PDO::PARAM_STR);
-    $this->db->bind(':achternaam', $request['achternaam'], PDO::PARAM_STR);
-    $this->db->bind(':land', $request['land'], PDO::PARAM_STR);
-    $this->db->bind(':networth', $request['networth'], PDO::PARAM_STR);
+        $this->db->query($sql);
+        $this->db->bind(':id', $request['id'], PDO::PARAM_INT);
+        $this->db->bind(':stagenaam', $request['stagenaam'], PDO::PARAM_STR);
+        $this->db->bind(':naam', $request['naam'], PDO::PARAM_STR);
+        $this->db->bind(':achternaam', $request['achternaam'], PDO::PARAM_STR);
+        $this->db->bind(':land', $request['land'], PDO::PARAM_STR);
+        $this->db->bind(':networth', $request['networth'], PDO::PARAM_STR);
 
-    return $this->db->execute();
-}
+        return $this->db->execute();
+    }
 }
