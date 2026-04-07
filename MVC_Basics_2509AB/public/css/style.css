@@ -1,0 +1,119 @@
+/* MVC Basics - Custom Styles */
+
+/* Sticky footer with flexbox */
+html { min-height: 100%; }
+
+/* Body padding voor fixed navbar */
+body {
+    padding-top: 70px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Wrapper voor sticky footer */
+.wrapper { flex: 1 0 auto; }
+
+.navbar {
+    background: #000000;
+background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(8, 8, 23, 1) 28%, rgba(138, 28, 28, 1) 100%, rgba(30, 44, 51, 1) 69%, rgba(135, 19, 19, 1) 79%, rgba(0, 0, 0, 1) 84%, rgba(30, 43, 46, 1) 88%, rgba(115, 22, 22, 1) 94%, rgba(42, 51, 54, 1) 100%);
+}
+
+/* Navbar styling */
+.navbar-brand { font-weight: bold; }
+
+.navbar-brand i { font-size: 1.5rem; }
+
+/* Footer styling */
+footer {
+    border-top: 1px solid #444;
+    flex-shrink: 0;
+}
+
+/* Table styling */
+.table th { background-color: #f8f9fa; }
+
+/* Form styling */
+.form-label { font-weight: 500; }
+
+/* Button spacing */
+.btn { margin-right: 5px; }
+
+/* Alert styling */
+.alert { margin-bottom: 0; }
+
+/* Link styling in homepage */
+.homepage-links a {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn {
+    background-color: rgb(0, 0, 0);
+    color: #f8f9fa;
+    box-shadow: inset;
+    border-radius: 20px;  
+}
+
+.nav-link {
+    color:  white;
+}
+
+.nav-item {
+    font-weight: bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: large;
+    margin-right: 170px;
+    box-shadow: inset;
+}
+
+footer {
+    background: #000000;
+background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(8, 8, 23, 1) 28%, rgba(138, 28, 28, 1) 100%, rgba(30, 44, 51, 1) 69%, rgba(135, 19, 19, 1) 79%, rgba(0, 0, 0, 1) 84%, rgba(30, 43, 46, 1) 88%, rgba(115, 22, 22, 1) 94%, rgba(42, 51, 54, 1) 100%);
+}
+
+p {
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    font-size: larger;
+    box-shadow: inset;
+    
+}
+
+.card-text{
+    color: black;
+    font-weight: 100;
+}
+
+.card-text1 {
+    color: black;
+    font-weight: 100;
+}
+
+
+.card-text2 {
+    color: black;
+    font-weight: 100;
+}
+
+
+.lead{
+    color: rgb(0, 0, 0);
+    font-weight: 100;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: larger;
+    border-radius: 1;       
+}
+
+.btn-primary1 {
+    margin-top: 25px;
+}
+
+.btn-primary2 {
+    margin-top: 30px;
+}
+
+.homepage-links a:hover { text-decoration: underline; background-color: #701313; color: #f8f9fa; }

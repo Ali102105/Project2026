@@ -24,8 +24,8 @@
                 <div class="mb-3">
                     <label for="stagenaam" class="form-label">Stagenaam</label>
                     <input name="stagenaam" type="text"
-                        class="form-control <?= isset($data['errors']['stagenaam']) ? 'is-invalid' : ''; ?>" id="stagenaam"
-                        value="<?= $_POST['stagenaam'] ?? ''; ?>">
+                        class="form-control <?= isset($data['errors']['stagenaam']) ? 'is-invalid' : ''; ?>"
+                        id="stagenaam" value="<?= $_POST['stagenaam'] ?? ''; ?>">
                     <?php if (isset($data['errors']['stagenaam'])): ?>
                         <div class="invalid-feedback"><?= $data['errors']['stagenaam']; ?></div>
                     <?php endif; ?>
@@ -82,7 +82,12 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-primary">Verstuur</button>
+                <div class="d-flex justify-content-between mt-3 mb-5">
+                    <button type="submit" class="btn btn-primary">Verstuur</button>
+                    <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Terug naar homepage
+                    </a>
+                </div>
             </form>
 
             <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i></a>

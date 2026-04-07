@@ -53,8 +53,8 @@
                 <div class="mb-3">
                     <label for="prijs" class="form-label">Prijs</label>
                     <input name="prijs" type="number" min="0" max="4000"
-                        class="form-control <?= isset($data['errors']['prijs']) ? 'is-invalid' : ''; ?>"
-                        id="prijs" value="<?= $_POST['prijs'] ?? ''; ?>">
+                        class="form-control <?= isset($data['errors']['prijs']) ? 'is-invalid' : ''; ?>" id="prijs"
+                        value="<?= $_POST['prijs'] ?? ''; ?>">
                     <?php if (isset($data['errors']['prijs'])): ?>
                         <div class="invalid-feedback"><?= $data['errors']['prijs']; ?></div>
                     <?php endif; ?>
@@ -73,8 +73,8 @@
                 <div class="mb-3">
                     <label for="gewicht" class="form-label">Gewicht</label>
                     <input name="gewicht" type="number" min="0" max="10" step="0.01"
-                        class="form-control <?= isset($data['errors']['gewicht']) ? 'is-invalid' : ''; ?>"
-                        id="gewicht" value="<?= $_POST['gewicht'] ?? ''; ?>">
+                        class="form-control <?= isset($data['errors']['gewicht']) ? 'is-invalid' : ''; ?>" id="gewicht"
+                        value="<?= $_POST['gewicht'] ?? ''; ?>">
                     <?php if (isset($data['errors']['gewicht'])): ?>
                         <div class="invalid-feedback"><?= $data['errors']['gewicht']; ?></div>
                     <?php endif; ?>
@@ -89,9 +89,11 @@
                         <div class="invalid-feedback"><?= $data['errors']['releasedatum']; ?></div>
                     <?php endif; ?>
                 </div>
-                <button type="submit" class="btn btn-primary">Verstuur</button>
+                <div class="d-flex justify-content-between mt-3 mb-5">
+                    <button type="submit" class="btn btn-primary">Verstuur</button>
+                    <a href="<?= URLROOT; ?>/homepages/index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Terug naar homepage
             </form>
-            <a href="<?= URLROOT; ?>/homepages/index"><i class="bi bi-arrow-left"></i></a>
         </div>
     </div>
 </div>
