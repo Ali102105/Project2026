@@ -39,6 +39,7 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <!-- CONFIRM ROLENAME
         <div class="mt-4">
     <x-input-label for="rolename" :value="__('Rolename')" />
 
@@ -48,7 +49,7 @@
 
     <x-input-error :messages="$errors->get('rolename')" class="mt-2" />
 </div>
-
+-->
 
 
         <div class="flex items-center justify-end mt-4">

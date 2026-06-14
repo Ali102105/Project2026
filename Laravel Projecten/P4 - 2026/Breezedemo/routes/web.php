@@ -17,12 +17,33 @@ Route::get('/tandarts', [TandartsController::class, 'index'])
     ->middleware(['auth', 'role:tandarts']);
 
 Route::get('/mondhygienist', [MondhygienistController::class, 'index'])
-    ->name('mondhygienistController.index')
+    ->name('mondhygienist.index')
     ->middleware(['auth', 'role:mondhygienist']);
 
 Route::get('/assistent', [AssistentController::class, 'index'])
     ->name('assistent.index')
     ->middleware(['auth', 'role:assistent']);
+
+# Praktijkmanagement Routes
+Route::get('/praktijkmanagement', [PraktijkmanagementController::class, 'index'])
+    ->name('praktijkmanagement.index')
+    ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::get('/praktijkmanagement/userroles', [PraktijkmanagementController::class, 'manageUserroles'])
+    ->name('praktijkmanagement.userroles')
+    ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::get('/praktijkmanagement/{id}/edit', [PraktijkmanagementController::class, 'edit'])
+    ->name('praktijkmanagement.edit')
+    ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::delete('/praktijkmanagement/{id}', [PraktijkmanagementController::class, 'destroy'])
+    ->name('praktijkmanagement.destroy')
+    ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::get('/praktijkmanagement/{id}', [PraktijkmanagementController::class, 'show'])
+    ->name('praktijkmanagement.show')
+    ->middleware(['auth', 'role:praktijkmanagement']);
 
 Route::get('/patient', [PatientController::class, 'index'])
     ->name('patient.index')
@@ -30,6 +51,14 @@ Route::get('/patient', [PatientController::class, 'index'])
 
 Route::get('/praktijkmanagement', [PraktijkmanagementController::class, 'index'])
     ->name('praktijkmanagement.index')
+    ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::put('/praktijkmanagement/{id}', [praktijkmanagementController::class, 'update'])
+    ->name('praktijkmanagement.update')
+    ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::get('/praktijkmanagement/userroles', [PraktijkmanagementController::class, 'manageUserroles'])
+    ->name('praktijkmanagement.userroles')
     ->middleware(['auth', 'role:praktijkmanagement']);
 
 Route::get('/dashboard', function () {
@@ -42,4 +71,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
