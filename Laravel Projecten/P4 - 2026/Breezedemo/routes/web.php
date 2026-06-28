@@ -6,6 +6,7 @@ use App\Http\Controllers\MondhygienistController;
 use App\Http\Controllers\AssistentController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PraktijkmanagementController;
+use App\Http\Controllers\AllergeenController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -60,6 +61,18 @@ Route::put('/praktijkmanagement/{id}', [praktijkmanagementController::class, 'up
 Route::get('/praktijkmanagement/userroles', [PraktijkmanagementController::class, 'manageUserroles'])
     ->name('praktijkmanagement.userroles')
     ->middleware(['auth', 'role:praktijkmanagement']);
+
+Route::get('/Allergeen', [AllergeenController::class, 'index'])
+    ->name('allergeen.index');
+
+Route::get('/allergeen/create', [AllergeenController::class, 'create'])->name('allergeen.create');
+
+Route::post('/allergeen', [AllergeenController::class, 'store'])->name('allergeen.store');
+
+Route::delete('/allergeen/{id}', [AllergeenController::class, 'destroy'])->name('allergeen.destroy');
+
+Route::get('/allergeen/{id}/edit', [AllergeenController::class, 'edit'])->name('allergeen.edit');
+Route::put('/allergeen/{id}', [AllergeenController::class, 'update'])->name('allergeen.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
