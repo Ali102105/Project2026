@@ -1,7 +1,5 @@
 # Database Specificatie Tabel
-## BE-opdracht 02 - Jamin
-
-Klas: IO-SD-2509AB
+## BE-opdracht 02
 
 ### 1. Product
 
