@@ -22,6 +22,11 @@
                         <x-nav-link :href="route('magazijn.index')" :active="request()->routeIs('magazijn.*')">
                             {{ __('Magazijn Overzicht') }}
                         </x-nav-link>
+
+                        <x-nav-link :href="route('leveranciers.index')" :active="request()->routeIs('leveranciers.*')">
+                            {{ __('Overzicht Leveranciers') }}
+                        </x-nav-link>
+
                     @endif
                 </div>
             </div>
@@ -89,6 +94,11 @@
                 <x-nav-link :href="route('magazijn.index')" :active="request()->routeIs('magazijn.*')">
                     {{ __('Magazijn Overzicht') }}
                 </x-nav-link>
+
+                <x-responsive-nav-link :href="route('leveranciers.index')" :active="request()->routeIs('leveranciers.*')">
+                    {{ __('Overzicht Leveranciers') }}
+                </x-responsive-nav-link>
+
             @endif
         </div>
 
