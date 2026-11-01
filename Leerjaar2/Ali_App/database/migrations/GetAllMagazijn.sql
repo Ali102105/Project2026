@@ -1,5 +1,5 @@
 -- **********************************************************************************
--- Naam opdracht : BE-opdracht 01 - Create script
+-- Naam opdracht : BE-opdracht 02 - Create script
 -- Doel          : Aanmaken en vullen van de 6 specificatietabellen
 -- **********************************************************************************
 
@@ -18,10 +18,10 @@ CREATE TABLE IF NOT EXISTS Product
      Id                 TINYINT UNSIGNED NOT NULL AUTO_INCREMENT
     ,Naam               VARCHAR(50)      NOT NULL
     ,Barcode            VARCHAR(13)      NOT NULL
-    ,IsActief           BIT              NOT NULL DEFAULT 1
-    ,Opmerking          VARCHAR(250)         NULL DEFAULT NULL
-    ,DatumAangemaakt    DATETIME(6)          NULL DEFAULT NULL
-    ,DatumGewijzigd     DATETIME(6)          NULL DEFAULT NULL
+    ,IsActief           BIT(1)           NOT NULL DEFAULT b'1'
+    ,Opmerking          VARCHAR(255)         NULL DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
     ,CONSTRAINT PK_Product_Id PRIMARY KEY (Id)
 ) ENGINE=InnoDB;
@@ -40,7 +40,7 @@ VALUES
     ,('Witte Muizen',   '8719587328256', 1, NULL)
     ,('Reuzen Slangen', '8719587325641', 1, NULL)
     ,('Zoute Rijen',    '8719587322739', 1, NULL)
-    ,('Winegums',       '8719587327527', 1, NULL)
+    ,('Winegums',       '8719587327527', 0, NULL)
     ,('Drop Munten',    '8719587322345', 1, NULL)
     ,('Kruis Drop',     '8719587322265', 1, NULL)
     ,('Zoute Ruitjes',  '8719587323256', 1, NULL);
@@ -54,10 +54,10 @@ CREATE TABLE IF NOT EXISTS Allergeen
      Id                 TINYINT UNSIGNED NOT NULL AUTO_INCREMENT
     ,Naam               VARCHAR(50)      NOT NULL
     ,Omschrijving       VARCHAR(150)     NOT NULL
-    ,IsActief           BIT              NOT NULL DEFAULT 1
-    ,Opmerking          VARCHAR(250)         NULL DEFAULT NULL
-    ,DatumAangemaakt    DATETIME(6)          NULL DEFAULT NULL
-    ,DatumGewijzigd     DATETIME(6)          NULL DEFAULT NULL
+    ,IsActief           BIT(1)           NOT NULL DEFAULT b'1'
+    ,Opmerking          VARCHAR(255)         NULL DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
     ,CONSTRAINT PK_Allergeen_Id PRIMARY KEY (Id)
 ) ENGINE=InnoDB;
@@ -84,10 +84,10 @@ CREATE TABLE IF NOT EXISTS Leverancier
     ,ContactPersoon     VARCHAR(50)      NOT NULL
     ,LeverancierNummer  VARCHAR(11)      NOT NULL
     ,Mobiel             VARCHAR(11)      NOT NULL
-    ,IsActief           BIT              NOT NULL DEFAULT 1
-    ,Opmerking          VARCHAR(250)         NULL DEFAULT NULL
-    ,DatumAangemaakt    DATETIME(6)          NULL DEFAULT NULL
-    ,DatumGewijzigd     DATETIME(6)          NULL DEFAULT NULL
+    ,IsActief           BIT(1)           NOT NULL DEFAULT b'1'
+    ,Opmerking          VARCHAR(255)         NULL DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
     ,CONSTRAINT PK_Leverancier_Id PRIMARY KEY (Id)
 ) ENGINE=InnoDB;
@@ -102,7 +102,9 @@ VALUES
     ,('Astra Sweets', 'Jasper del Monte',  'L1029284315', '06-39398734', 1, NULL)
     ,('Haribo',       'Sven Stalman',      'L1029324748', '06-24383291', 1, NULL)
     ,('Basset',       'Joyce Stelterberg', 'L1023845773', '06-48293823', 1, NULL)
-    ,('De Bron',      'Remco Veenstra',    'L1023857736', '06-34291234', 1, NULL);
+    ,('De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234', 1, NULL)
+    ,('Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456', 1, NULL);
+
 
 
 -- ============================================================
@@ -118,10 +120,10 @@ CREATE TABLE IF NOT EXISTS Magazijn
     ,ProductId                  TINYINT UNSIGNED NOT NULL
     ,VerpakkingsEenheid DECIMAL(5,2)    NOT NULL
     ,AantalAanwezig             SMALLINT UNSIGNED    NULL DEFAULT NULL
-    ,IsActief           BIT              NOT NULL DEFAULT 1
-    ,Opmerking          VARCHAR(250)         NULL DEFAULT NULL
-    ,DatumAangemaakt    DATETIME(6)          NULL DEFAULT NULL
-    ,DatumGewijzigd     DATETIME(6)          NULL DEFAULT NULL
+    ,IsActief           BIT(1)           NOT NULL DEFAULT b'1'
+    ,Opmerking          VARCHAR(255)         NULL DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
     ,CONSTRAINT PK_Magazijn_Id PRIMARY KEY (Id)
     ,CONSTRAINT FK_Magazijn_ProductId_Product_Id
@@ -157,10 +159,10 @@ CREATE TABLE IF NOT EXISTS ProductPerAllergeen
      Id                 TINYINT UNSIGNED NOT NULL AUTO_INCREMENT
     ,ProductId          TINYINT UNSIGNED NOT NULL
     ,AllergeenId        TINYINT UNSIGNED NOT NULL
-    ,IsActief           BIT              NOT NULL DEFAULT 1
-    ,Opmerking          VARCHAR(250)         NULL DEFAULT NULL
-    ,DatumAangemaakt    DATETIME(6)          NULL DEFAULT NULL
-    ,DatumGewijzigd     DATETIME(6)          NULL DEFAULT NULL
+    ,IsActief           BIT(1)           NOT NULL DEFAULT b'1'
+    ,Opmerking          VARCHAR(255)         NULL DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
     ,CONSTRAINT PK_ProductPerAllergeen_Id PRIMARY KEY (Id)
     ,CONSTRAINT FK_ProductPerAllergeen_ProductId_Product_Id
@@ -199,10 +201,10 @@ CREATE TABLE IF NOT EXISTS ProductPerLeverancier
     ,DatumLevering              DATE             NOT NULL
     ,Aantal                     SMALLINT UNSIGNED NOT NULL
     ,DatumEerstVolgendeLevering DATE                 NULL DEFAULT NULL
-    ,IsActief           BIT              NOT NULL DEFAULT 1
-    ,Opmerking          VARCHAR(250)         NULL DEFAULT NULL
-    ,DatumAangemaakt    DATETIME(6)          NULL DEFAULT NULL
-    ,DatumGewijzigd     DATETIME(6)          NULL DEFAULT NULL
+    ,IsActief           BIT(1)           NOT NULL DEFAULT b'1'
+    ,Opmerking          VARCHAR(255)         NULL DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
     ,CONSTRAINT PK_ProductPerLeverancier_Id PRIMARY KEY (Id)
     ,CONSTRAINT FK_ProductPerLeverancier_LeverancierId_Leverancier_Id
@@ -217,23 +219,23 @@ INSERT INTO ProductPerLeverancier
      IsActief, Opmerking
 )
 VALUES
-     (1, 1,  '2024-10-09', 23, '2024-10-16', 1, NULL)
-    ,(1, 1,  '2024-10-18', 21, '2024-10-25', 1, NULL)
-    ,(1, 2,  '2024-10-09', 12, '2024-10-16', 1, NULL)
-    ,(1, 3,  '2024-10-10', 11, '2024-10-17', 1, NULL)
-    ,(2, 4,  '2024-10-14', 16, '2024-10-21', 1, NULL)
-    ,(2, 4,  '2024-10-21', 23, '2024-10-28', 1, NULL)
-    ,(2, 5,  '2024-10-14', 45, '2024-10-21', 1, NULL)
-    ,(2, 6,  '2024-10-14', 30, '2024-10-21', 1, NULL)
-    ,(3, 7,  '2024-10-12', 12, '2024-10-19', 1, NULL)
-    ,(3, 7,  '2024-10-19', 23, '2024-10-26', 1, NULL)
-    ,(3, 8,  '2024-10-10', 12, '2024-10-17', 1, NULL)
-    ,(3, 9,  '2024-10-11',  1, '2024-10-18', 1, NULL)
-    ,(4, 10, '2024-10-16', 24, '2024-10-30', 1, NULL)
-    ,(5, 11, '2024-10-10', 47, '2024-10-17', 1, NULL)
-    ,(5, 11, '2024-10-19', 60, '2024-10-26', 1, NULL)
-    ,(5, 12, '2024-10-11', 45, NULL,         1, NULL)
-    ,(5, 13, '2024-10-12', 23, NULL,         1, NULL);
+     (1, 1,  '2024-11-09', 23, '2024-11-16', 1, NULL)
+    ,(1, 1,  '2024-11-18', 21, '2024-11-25', 1, NULL)
+    ,(1, 2,  '2024-11-09', 12, '2024-11-16', 1, NULL)
+    ,(1, 3,  '2024-11-10', 11, '2024-11-17', 1, NULL)
+    ,(2, 4,  '2024-11-14', 16, '2024-11-21', 1, NULL)
+    ,(2, 4,  '2024-11-21', 23, '2024-11-28', 1, NULL)
+    ,(2, 5,  '2024-11-14', 45, '2024-11-21', 1, NULL)
+    ,(2, 6,  '2024-11-14', 30, '2024-11-21', 1, NULL)
+    ,(3, 7,  '2024-11-12', 12, '2024-11-19', 1, NULL)
+    ,(3, 7,  '2024-11-19', 23, '2024-11-26', 1, NULL)
+    ,(3, 8,  '2024-11-10', 12, '2024-11-17', 1, NULL)
+    ,(3, 9,  '2024-11-11',  1, '2024-11-18', 1, NULL)
+    ,(4, 10, '2024-11-16', 24, '2024-11-30', 1, NULL)
+    ,(5, 11, '2024-11-10', 47, '2024-11-17', 1, NULL)
+    ,(5, 11, '2024-11-19', 60, '2024-11-26', 1, NULL)
+    ,(5, 12, '2024-11-11', 45, NULL,         1, NULL)
+    ,(5, 13, '2024-11-12', 23, NULL,         1, NULL);
 
 -- Controle
 SELECT * FROM Product;
