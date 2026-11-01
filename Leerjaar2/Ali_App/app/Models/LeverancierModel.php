@@ -31,8 +31,8 @@ class LeverancierModel extends Model
                 $index + 1,
                 $value,
                 is_int($value)
-                    ? PDO::PARAM_INT
-                    : PDO::PARAM_STR
+                ? PDO::PARAM_INT
+                : PDO::PARAM_STR
             );
         }
 
@@ -79,5 +79,53 @@ class LeverancierModel extends Model
             'SP_GetProductenByLeverancierId',
             [$leverancierId]
         );
+    }
+
+    /**
+     * Productgegevens ophalen voor het leveringsformulier.
+     */
+    public function getLeveringProduct(
+        int $leverancierId,
+        int $productId
+    ): ?object {
+        $resultaat = $this->callProcedure(
+            'SP_GetProductVoorLevering',
+            [
+                $leverancierId,
+                $productId
+            ]
+        );
+
+        return $resultaat[0] ?? null;
+    }
+
+    /**
+     * Nieuwe levering toevoegen.
+     *
+     * De voorraad verhogen en de levering registreren
+     * gebeuren samen in één databasetransactie.
+     */
+    public function voegLeveringToe(
+        int $leverancierId,
+        int $productId,
+        int $aantal,
+        string $datum
+    ): string {
+        return DB::transaction(function () use ($leverancierId, $productId, $aantal, $datum): string {
+
+            $resultaat = $this->callProcedure(
+                'SP_VoegLeveringToe',
+                [
+                    $leverancierId,
+                    $productId,
+                    $aantal,
+                    $datum
+                ]
+            );
+
+            return (string) (
+                $resultaat[0]->Resultaat ?? 'onbekend'
+            );
+        });
     }
 }
