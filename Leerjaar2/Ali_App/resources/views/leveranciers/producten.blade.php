@@ -35,6 +35,14 @@
                     </p>
                 </div>
 
+
+                @if (session('succes'))
+                    <div class="mb-5 rounded-md bg-green-100 p-4 text-green-800">
+                        {{ session('succes') }}
+                    </div>
+                @endif
+
+
                 <div class="overflow-x-auto">
                     <table class="min-w-full text-sm text-left text-gray-900 dark:text-gray-100">
                         <thead class="bg-gray-100 dark:bg-gray-700">
@@ -49,36 +57,40 @@
 
                         <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                             @forelse ($producten as $product)
-                                <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                    <td class="px-4 py-3">
-                                        {{ $product->ProductNaam }}
-                                    </td>
+                                                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                                                            <td class="px-4 py-3">
+                                                                {{ $product->ProductNaam }}
+                                                            </td>
 
-                                    <td class="px-4 py-3">
-                                        {{ $product->AantalInMagazijn }}
-                                    </td>
+                                                            <td class="px-4 py-3">
+                                                                {{ $product->AantalInMagazijn }}
+                                                            </td>
 
-                                    <td class="px-4 py-3">
-                                        {{ number_format((float) $product->VerpakkingsEenheid, 2, ',', '') }} kg
-                                    </td>
+                                                            <td class="px-4 py-3">
+                                                                {{ number_format((float) $product->VerpakkingsEenheid, 2, ',', '') }} kg
+                                                            </td>
 
-                                    <td class="px-4 py-3">
-                                        {{ $product->LaatsteLevering
-                                            ? date('d-m-Y', strtotime($product->LaatsteLevering))
-                                            : 'Onbekend' }}
-                                    </td>
+                                                            <td class="px-4 py-3">
+                                                                {{ $product->LaatsteLevering
+                                    ? date('d-m-Y', strtotime($product->LaatsteLevering))
+                                    : 'Onbekend' }}
+                                                            </td>
 
-                                    <td class="px-4 py-3 text-center">
-                                        <span class="text-xl text-gray-400"
-                                              title="Nieuwe levering wordt bij Userstory 2 toegevoegd">
-                                            +
-                                        </span>
-                                    </td>
-                                </tr>
+
+                                                            <td class="px-4 py-3 text-center">
+                                                                <a href="{{ route('leveranciers.levering.form', [
+                                    $leverancier->Id,
+                                    $product->ProductId
+                                ]) }}" class="inline-flex items-center justify-center rounded-md bg-green-600 px-3 py-1 text-xl text-white hover:bg-green-700"
+                                                                    title="Nieuwe levering">
+                                                                    +
+                                                                </a>
+                                                            </td>
+
+                                                        </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5"
-                                        class="px-4 py-6 text-center font-semibold text-red-600">
+                                    <td colspan="5" class="px-4 py-6 text-center font-semibold text-red-600">
                                         Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin
                                     </td>
                                 </tr>
@@ -89,12 +101,12 @@
 
                 <div class="mt-6 flex justify-end gap-3">
                     <a href="{{ route('leveranciers.index') }}"
-                       class="rounded-md bg-gray-600 px-5 py-2 text-white hover:bg-gray-700">
+                        class="rounded-md bg-gray-600 px-5 py-2 text-white hover:bg-gray-700">
                         Terug
                     </a>
 
                     <a href="{{ route('dashboard') }}"
-                       class="rounded-md bg-indigo-600 px-5 py-2 text-white hover:bg-indigo-700">
+                        class="rounded-md bg-indigo-600 px-5 py-2 text-white hover:bg-indigo-700">
                         Home
                     </a>
                 </div>
